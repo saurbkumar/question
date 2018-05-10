@@ -1,0 +1,12 @@
+# https://www.hackerrank.com/challenges/linkedin-practice-array-left-rotation/submissions/code/51469712
+n,d = raw_input().split()
+array = map(int,raw_input().split())
+n = int(n) # array size
+d = int(d) # number of rotation
+shift = d%n
+temp = [0]*n # temp = array will not work :)
+for i in range(n):
+    val = (i + shift)%n # find position of shift
+    temp[i] = array[val] # transfer of element
+for data in temp:
+    print data,

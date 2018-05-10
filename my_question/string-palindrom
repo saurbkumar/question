@@ -1,0 +1,12 @@
+'''
+wheter the stinf is palindrom or not.
+'''
+
+s = 'abcDDcba'
+result = "Yes it is"
+str_len = len(s)
+for index in range(str_len):
+    if s[index]!=s[str_len-index-1]:
+        result = "Not Palindrom" 
+        break
+print(result)

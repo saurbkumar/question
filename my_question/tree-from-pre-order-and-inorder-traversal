@@ -1,0 +1,61 @@
+'''
+Given preorder and inorder traversal of a tree, construct the binary tree.
+
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+Return the following binary tree:
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+'''
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None        
+class Tree:
+    def __init__(self):
+        pass
+    def insert(self, start, end, arr):
+        if start>end:
+            return
+        mid = (start+end)/2
+        node = Node(arr[mid])
+        node.left = self.insert(start, mid-1, arr)
+        node.right = self.insert(mid+1, end, arr)
+        return node
+    def traverseInOrder(self, root):
+        """
+        traverse function will print all the node in the tree.
+        """
+        if root is not None:
+            self.traverseInOrder(root.left)
+            print root.data
+            self.traverseInOrder(root.right)
+
+tree = Tree()
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+# first find the root of the tree
+root = preorder[0]
+pivot = inorder.index(root)
+
+# find the left part of the tree
+n_left = inorder[:pivot]
+
+left_part = tree.insert(0, len(n_left)-1, n_left)
+
+# find the right part of the tree
+n_right = inorder[pivot+1:]
+right_part = tree.insert(0,len(n_right)-1,n_right)
+
+# create root and then append the left and right part fo the tree
+root = Node(inorder[pivot])
+root.left = left_part
+root.right = right_part
+
+tree.traverseInOrder(root)
