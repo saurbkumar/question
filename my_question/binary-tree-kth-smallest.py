@@ -35,3 +35,20 @@ def getLeft(root,k):
     return None
 data = getLeft(root,1)
 print(data.data)
+
+# or ------
+# K -> kth element looking for, curr- > current ith smallest element
+# Idea - tree is binary search, so do the inorder traverse and count the curr position
+def kSmall(root,k,curr):
+    # root is none, return the curr counter value
+    if root==None:
+        return curr
+    # inorder traversal
+    curr = kSmall(root.left,k,curr)
+    curr = curr + 1
+    if(curr==k):
+        print(root.data)
+    curr = kSmall(root.right,k,curr)
+    return curr
+current=0
+kSmall(root,7,current)
