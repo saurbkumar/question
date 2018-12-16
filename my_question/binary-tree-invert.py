@@ -27,11 +27,11 @@ root.right = Node(7)
 root.right.left = Node(6)
 root.right.right = Node(9)
 
-
+import copy
 def reverse(root):
     if root==None:
         return
-    temp = root
+    temp = copy.deepcopy(root)
     root.left = temp.right
     root.right = temp.left
     reverse(temp.left)
