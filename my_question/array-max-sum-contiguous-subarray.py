@@ -1,24 +1,21 @@
-# https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+# https://leetcode.com/problems/minimum-size-subarray-sum/
 
 '''
 Idea is iterate over the array and keep track of the max number achived so far and if max is negative then make it zero
 '''
 
-from sys import maxint
-def maxSubArraySum(a,size):
-      
-    max_so_far = -maxint - 1
-    max_ending_here = 0
-      
-    for i in range(0, size):
-        max_ending_here = max_ending_here + a[i]
-        if (max_so_far < max_ending_here):
-            max_so_far = max_ending_here
- 
-        if max_ending_here < 0:
-            max_ending_here = 0  
-    return max_so_far
-  
-# Driver function to check the above function 
-a = [-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7]
-print "Maximum contiguous sum is", maxSubArraySum(a,len(a))
+left = 0
+right = 0
+minLen = len(nums) + 1
+currentSum = 0
+while right < len(nums):
+while (currentSum < s and right <len(nums)): 
+    currentSum = currentSum + nums[right] 
+    right = right + 1
+minLen = min(minLen, right-left + 1)
+while (currentSum >= s and left < right):
+    currentSum = currentSum - nums[left]
+    left = left + 1
+minLen = min(minLen, right-left + 1)
+
+return(0 if minLen == len(nums)+1 else minLen)
